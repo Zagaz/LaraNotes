@@ -14,9 +14,11 @@
 <body>
     <?php //END HEADER ?>
 
+    <?php //This is the main content ?>
+    @yield('content')
 
     <?php //FOOTER ?>
-    <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="asset('assets/bootstrap/bootstrap.bundle.min.js')"></script>
 </body>
 </html>
 <?php //END FOOTER
