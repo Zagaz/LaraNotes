@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>User:{{$name}}</h1>
+    <h1>User:{{ $name }}</h1>
 
 </body>
 </html>
