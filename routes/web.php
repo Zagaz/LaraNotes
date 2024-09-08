@@ -12,9 +12,11 @@ Route::get('about', function(){
 
 });
 //001
-Route::get('main',[MainController::class,'main']);
 Route::get('about',[MainController::class,'about']);
 Route::get('contact',[MainController::class,'contact']);
 
 //With paramreters
-Route::get('/user/{name}',[MainController::class,'user']);
+Route::get('/main/{name}',[MainController::class,'main']);
+Route::get('/page2/{name}',[MainController::class,'page2']);
+Route::get('/page3/{name}',[MainController::class,'page3']);
+
