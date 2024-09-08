@@ -12,6 +12,6 @@ class AuthController extends Controller
     }
     public function logout()
     {
-        return view('login');;
+        return view('logout');;
     }
 }
