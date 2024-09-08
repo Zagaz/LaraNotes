@@ -18,4 +18,9 @@ class MainController extends Controller
     {
         return view('contact');
     }
+    public function user($name)
+    {
+        return view('user',['name'=>$name]);
+    }
+
 }
