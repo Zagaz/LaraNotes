@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+
+// XbZBteXJ1Flis8bM DB
 
 class AuthController extends Controller
 {
@@ -31,10 +34,25 @@ class AuthController extends Controller
 
             ]
         );
-        // Get user input
-        $username = $request->input('text_username');
-        $password =  $request->input('text_password');
-        echo "OK";
+
+        echo "Form Submitted Successfully";
+
+   // test if we have connection is working
+
+   try{
+    DB::connection()->getPdo();
+    echo "Connected successfully to: " . DB::connection()->getDatabaseName();
+   } catch (\Exception $e) {
+    die("Could not connect to the database. Please check your configuration. error:" . $e );
+    }
+
+
+
+
+
+
+
+
 
     }
     public function logout()
