@@ -43,6 +43,13 @@
                             <div class="text-center text-secondary mt-3">
                         <small>&copy; <?= date('Y') ?> Notes</small>
                     </div>
+                    {{-- Inavlid login--}}
+                    @if(session('loginError'))
+                        <div class="alert alert-danger mt-3">
+                            <p><span><i class="fas fa-exclamation-circle"></i></span> {{session('loginError')}}</p>
+                        </div>
+                    @endif
+
                     {{---Errors---}}
                     @if($errors->any())
                         <div class="alert alert-danger mt-3">
