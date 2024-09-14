@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,7 @@ class AuthController extends Controller
             //Rules
             [
                 'text_username' => 'required|email',
-                'text_password' => 'required|min:6|max:16'
+                'text_password' => 'required|min:1|max:16'
 
             ],
             //error messages
@@ -37,26 +38,43 @@ class AuthController extends Controller
 
         echo "Form Submitted Successfully";
 
-   // test if we have connection is working
+        $username = $request->input('text_username');
+        $password = $request->input('text_password');
 
-   try{
-    DB::connection()->getPdo();
-    echo "Connected successfully to: " . DB::connection()->getDatabaseName();
-   } catch (\Exception $e) {
-    die("Could not connect to the database. Please check your configuration. error:" . $e );
+        //check if the user exists
+
+        $user = User::where('username', $username)
+                ->where('deleted_at',NULL)
+                ->first();
+
+            if(!$user)
+            {
+                return redirect()
+                        ->back()
+                        ->withInput()
+                        ->with("loginError","Username or Password is incorrect");
+            }
+            if(!password_verify($password,$user->password))
+            {
+                return redirect()
+                        ->back()
+                        ->withInput()
+                        ->with("loginError","Username or Password is incorrect");
+            }
+            //update lastlogin
+            $user->last_login = date('Y-m-d H:i:s');
+            $user->save();
+            session([
+                'user_id' => $user->id,
+                'username' => $user->username,
+            ]);
+            echo "Login Successful";
     }
 
-
-
-
-
-
-
-
-
-    }
     public function logout()
     {
-        return view('logout');;
+        session()->forget(['user_id','username']);
+        return redirect()
+               ->to('/login');
     }
 }
