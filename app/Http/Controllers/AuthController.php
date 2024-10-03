@@ -65,7 +65,7 @@ class AuthController extends Controller
             $user->last_login = date('Y-m-d H:i:s');
             $user->save();
             session([
-                'user_id' => $user->id,
+                'id' => $user->id,
                 'username' => $user->username,
             ]);
             echo "Login Successful";
@@ -73,7 +73,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        session()->forget(['user_id','username']);
+        session()->forget('user');
         return redirect()
                ->to('/login');
     }
