@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckIsLog
+class CheckIsLogged
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,11 @@ class CheckIsLog
     public function handle(Request $request, Closure $next): Response
     {
         // Check if user is logged in
-        if(!session()->has('user'))
+        if(!session('user'))
         {
             return redirect('/login');
         }
         return $next($request);
+
     }
 }
