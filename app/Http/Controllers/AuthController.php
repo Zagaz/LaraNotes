@@ -36,7 +36,6 @@ class AuthController extends Controller
             ]
         );
 
-        echo "Form Submitted Successfully";
 
         $username = $request->input('text_username');
         $password = $request->input('text_password');
@@ -71,8 +70,10 @@ class AuthController extends Controller
                 ]
 
             ]);
+            // redirect to the home page
+            return redirect()->to('/');
 
-        
+
 
     }
 

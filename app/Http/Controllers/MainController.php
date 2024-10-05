@@ -9,8 +9,9 @@ class MainController extends Controller
 {
     public function index()
     {
-       echo "I'm inside the INDEX!";
-        // return view('index');
+      // Load users notes
+      // show home view
+      return view('home');
     }
 
     public function newNote()
