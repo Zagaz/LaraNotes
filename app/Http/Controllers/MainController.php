@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 
@@ -9,8 +10,9 @@ class MainController extends Controller
 {
     public function index()
     {
-      // Load users notes
-      // show home view
+      $id = session('user.id');
+      $user = User::find($id)->toArray();
+      $notes = User::find($id)->notes->toArray();
       return view('home');
     }
 
