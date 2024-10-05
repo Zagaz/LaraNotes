@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\Operations;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -19,31 +20,26 @@ class MainController extends Controller
 
     public function editNote($id)
     {
-        $id = $this->decryptId($id);
-
+        // $id = $this->decryptId($id);
+        $id = Operations::decryptId($id);
         echo "I'm inside the edit note! . $id";
+
     }
 
     public function deleteNote($id)
     {
-
-        $id = $this->decryptId($id);
-
+        $id = Operations::decryptId($id);
         echo "I'm inside the delete note! . $id";
     }
 
     public function newNote()
     {
-        echo "I'm inside the new note!";
-        // return view('newNote');
+
+        return view('new_note');
     }
-    private function decryptId($id)
+    public function newNoteSubmit(Request $request)
     {
-        try {
-            $id = Crypt::decrypt($id);
-        } catch (DecryptException $e) {
-            return redirect()->route('home');
-        }
-        return $id;
+        echo "I'm inside the new note submit!";
+
     }
 }
