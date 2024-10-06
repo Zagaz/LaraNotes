@@ -58,7 +58,6 @@ class MainController extends Controller
             ]
         );
 
-
         // get user id
         //create new note
         // redirect to home
