@@ -5,7 +5,7 @@
                 <div class="col">
                     <h4 class="text-info">{{ $note['title'] }}</h4>
                     <small class="text-secondary"><span class="opacity-75 me-2">Created
-                            at:</span><strong>{{ date('M jS, Y', strtotime($note['created_at'])) }}</strong></small>
+                            at:</span><strong>{{ date( 'M jS, Y, h:i A' , strtotime($note['created_at'])) }}</strong></small>
                 </div>
                 <div class="col text-end">
                     <a href="{{route('edit',['id'=>Crypt::encrypt($note['id']) ])}}"  class="btn btn-outline-secondary btn-sm mx-1"><i
