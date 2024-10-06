@@ -39,7 +39,28 @@ class MainController extends Controller
     }
     public function newNoteSubmit(Request $request)
     {
-        echo "I'm inside the new note submit!";
 
+        //validade request
+        $request->validate(
+            //Rules
+            [
+                'text_title' => 'required|min:3|max:200',
+                'text_note' => 'required|min:3|max:3000'
+            ],
+            //error messages
+            [
+                'text_title.required' => 'Title is required',
+                'text_title.min' => 'Password must be at least :min characters',
+                'text_title.max' => 'Password must be at most :max characters',
+                'text_note.required' => 'Note is required',
+                'text_note.min' => 'Note must be at least :min characters',
+                'text_note.max' => 'Note must be at most :max characters',
+            ]
+        );
+
+
+        // get user id
+        //create new note
+        // redirect to home
     }
 }
