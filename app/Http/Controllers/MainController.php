@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Note;
 use App\Models\User;
 use App\Services\Operations;
 use Illuminate\Contracts\Encryption\DecryptException;
@@ -57,9 +58,15 @@ class MainController extends Controller
                 'text_note.max' => 'Note must be at most :max characters',
             ]
         );
-
         // get user id
+        $id = session('user.id');
         //create new note
+        $note = new Note();
+        $note->user_id = $id;
+        $note->title = $request->text_title;
+        $note->text = $request->text_note;
+        $note->save();
         // redirect to home
+        return redirect()->route('home');
     }
 }
