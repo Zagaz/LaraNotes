@@ -5,8 +5,10 @@
         </a>
     </div>
     <div class="col text-center">
+        <i class="fa-brands fa-laravel"></i>
         A simple <span class="text-warning">Laravel</span> project!
     </div>
+    
     <div class="col">
         <div class="d-flex justify-content-end align-items-center">
             <span class="me-3"><i
