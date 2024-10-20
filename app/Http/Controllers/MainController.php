@@ -5,16 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Note;
 use App\Models\User;
 use App\Services\Operations;
-use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
+
 
 class MainController extends Controller
 {
     public function index()
     {
         $id = session('user.id');
-        $notes = User::find($id)->notes()->get()->toArray();
+        $notes = User::find($id)->notes()->whereNull('deleted_at')->get()->toArray();
 
         return view('home', ['notes' => $notes]);
     }
@@ -76,7 +75,24 @@ class MainController extends Controller
     public function deleteNote($id)
     {
         $id = Operations::decryptId($id);
-        echo "I'm inside the delete note! . $id";
+        $note = Note::find($id);
+        return view('delete_note', ['note' => $note]);
+
+    }
+
+    public function deleteNoteConfirm($id)
+    {
+
+
+        // Decrypt id
+        $id = Operations::decryptId($id);
+        // Load note
+        $note = Note::find($id);
+
+        $note->deleted_at = date('Y-m-d H:i:s');
+        $note->save();
+
+     return redirect ()->route('home');
     }
 
     public function newNote()
@@ -116,4 +132,7 @@ class MainController extends Controller
         // Redirect to home
         return redirect()->route('home');
     }
+
+
+
 }
