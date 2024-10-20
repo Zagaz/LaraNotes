@@ -11,7 +11,10 @@
                 <!-- label and cancel -->
                 <div class="row">
                     <div class="col">
-                        <p class="display-6 mb-0">NEW NOTE</p>
+                        <p class="display-6 mb-0">
+                            <i class="fa-regular fa-note-sticky"></i>
+                            NEW NOTE
+                        </p>
                     </div>
                     <div class="col text-end">
                         <a href="{{ route('home') }}" class="btn btn-outline-danger">
@@ -29,7 +32,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Note Title</label>
                                 <input type="text" class="form-control bg-primary text-white" name="text_title"
-                                    value={{ old('text_title') }}>
+                                maxlength="200" value={{ old('text_title') }}>
                                 @error('text_title')
                                     <div class="text-danger"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
                                 @enderror
@@ -38,7 +41,7 @@
                             <!-- text note -->
                             <div class="mb-3">
                                 <label class="form-label">Note Text</label>
-                                <textarea class="form-control bg-primary text-white" name="text_note" rows="5" >{{ old('text_note') }}</textarea>
+                                <textarea class="form-control bg-primary text-white" name="text_note" rows="5" maxlength="3000">{{ old('text_note') }}</textarea>
                                 @error('text_note')
                                     <div class="text-danger"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
                                 @enderror
@@ -49,8 +52,9 @@
                         <div class="col text-end">
                             <a href="{{ route('home') }}" class="btn btn-primary px-5"><i
                                     class="fa-solid fa-ban me-2"></i>Cancel</a>
-                            <button type="submit" class="btn btn-secondary px-5"><i
-                                    class="fa-regular fa-circle-check me-2"></i>Save</button>
+                            <button type="submit" class="btn btn-secondary px-5">
+                                <i class="fa-regular fa-floppy-disk"></i>
+                                Save</button>
                         </div>
                     </div>
                 </form>

@@ -11,7 +11,9 @@
                 <!-- label and cancel -->
                 <div class="row">
                     <div class="col">
-                        <p class="display-6 mb-0">EDIT NOTE</p>
+                        <p class="display-6 mb-0">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                            EDIT NOTE</p>
                     </div>
                     <div class="col text-end">
                         <a href="{{ route('home') }}" class="btn btn-outline-danger">
@@ -50,8 +52,9 @@
                         <div class="col text-end">
                             <a href="{{ route('home') }}" class="btn btn-primary px-5"><i
                                     class="fa-solid fa-ban me-2"></i>Cancel</a>
-                            <button type="submit" class="btn btn-secondary px-5"><i
-                                    class="fa-regular fa-circle-check me-2"></i>UPDATE</button>
+                            <button type="submit" class="btn btn-secondary px-5">
+                                <i class="fa-solid fa-arrow-rotate-right"></i>
+                                                                UPDATE</button>
                         </div>
                     </div>
                 </form>

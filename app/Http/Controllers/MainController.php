@@ -87,32 +87,33 @@ class MainController extends Controller
     public function newNoteSubmit(Request $request)
     {
 
-        //validade request
+        // Validade request
         $request->validate(
             //Rules
             [
                 'text_title' => 'required|min:3|max:200',
                 'text_note' => 'required|min:3|max:3000'
             ],
-            //error messages
+            //Error messages
             [
                 'text_title.required' => 'Title is required',
-                'text_title.min' => 'Password must be at least :min characters',
-                'text_title.max' => 'Password must be at most :max characters',
+                'text_title.min' => 'The title must be at least :min characters',
+                'text_title.max' => 'The title must be at most :max characters',
                 'text_note.required' => 'Note is required',
                 'text_note.min' => 'Note must be at least :min characters',
                 'text_note.max' => 'Note must be at most :max characters',
             ]
         );
-        // get user id
+        // Get user id
         $id = session('user.id');
-        //create new note
+        // Create new note
         $note = new Note();
+        // Set note values
         $note->user_id = $id;
         $note->title = $request->text_title;
         $note->text = $request->text_note;
         $note->save();
-        // redirect to home
+        // Redirect to home
         return redirect()->route('home');
     }
 }
