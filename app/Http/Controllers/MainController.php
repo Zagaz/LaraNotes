@@ -28,12 +28,11 @@ class MainController extends Controller
 
         // show edit note view
         return view('edit_note', ['note' => $note]);
-
     }
 
     public function editNoteSubmit(Request $request)
     {
-            //validade request
+        //validade request
         $request->validate(
             //Rules
             [
@@ -66,10 +65,6 @@ class MainController extends Controller
 
         //redirect to home
         return redirect()->route('home');
-
-
-
-
     }
 
     public function deleteNote($id)
@@ -77,22 +72,18 @@ class MainController extends Controller
         $id = Operations::decryptId($id);
         $note = Note::find($id);
         return view('delete_note', ['note' => $note]);
-
     }
 
     public function deleteNoteConfirm($id)
     {
-
-
         // Decrypt id
         $id = Operations::decryptId($id);
         // Load note
         $note = Note::find($id);
-
-        $note->deleted_at = date('Y-m-d H:i:s');
-        $note->save();
-
-     return redirect ()->route('home');
+        // Soft delete note
+        $note->delete();
+        // $note->save();
+        return redirect()->route('home');
     }
 
     public function newNote()
@@ -132,7 +123,4 @@ class MainController extends Controller
         // Redirect to home
         return redirect()->route('home');
     }
-
-
-
 }
